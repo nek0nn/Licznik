@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Licznik.Models"
+             x:Class="Licznik.Views.MainPage">
+
+    <Grid Padding="20"
+          RowDefinitions="Auto,Auto,*"
+          RowSpacing="15">
+
+        <Label
+            Text="Liczniki"
+            FontSize="28"
+            HorizontalOptions="Center"
+            FontAttributes="Bold" />
+
+        <Button
+            Grid.Row="1"
+            Text="Dodaj licznik"
+            Clicked="DodajLicznik_Clicked"
+            HorizontalOptions="Center" />
+
+        <CollectionView
+            Grid.Row="2"
+            ItemsSource="{Binding Liczniki}">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Vertical"
+                    ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:DaneLicznika">
+
+                    <Border
+                        BackgroundColor="#E0E0E0"
+                        StrokeShape="RoundRectangle 10"
+                        Padding="15"
+                        Margin="0,5">
+
+                        <Grid ColumnDefinitions="*,Auto,70,Auto">
+                            <Label
+                                Text="{Binding Nazwa}"
+                                FontSize="18"
+                                VerticalOptions="Center" />
+
+                            <Button
+                                Grid.Column="1"
+                                Text="-"
+                                FontSize="20"
+                                Padding="0"
+                                Margin="5,0"
+                                Clicked="Minus_Clicked" />
+
+                            <Label
+                                Grid.Column="2"
+                                Text="{Binding Wartosc}"
+                                FontSize="20"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center" />
+
+                            <Button
+                                Grid.Column="3"
+                                Text="+"
+                                FontSize="20"
+                                Padding="0"
+                                Margin="5,0"
+                                Clicked="Plus_Clicked" />
+                        </Grid>
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
